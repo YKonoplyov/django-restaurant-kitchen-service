@@ -5,8 +5,8 @@
     <a href="{% url 'kitchen:dish-type-create' %}">Create</a>
   </h1>
   <ul>
-    {% for dishtipe in dishtype_list %}
-    <li>{{ dishtipe.type }}</li>
+    {% for dishtype in dishtype_list %}
+    <li>{{ dishtype.type }}  <a href="{% url 'kitchen:dish-type-delete' pk=dishtype.id %}">Delete</a></li>
     {% endfor %}
   </ul>
 {% endblock %}
