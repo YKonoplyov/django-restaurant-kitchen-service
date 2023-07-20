@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Cooks list <a href="{% url 'kitchen:cook-create' %}">Add cook</a></h1>
+  <ul>
+    {% for cook in cook_list %}
+    <li><a href="{% url 'kitchen:cook-detail' pk=user.id %}">{{ cook.username }}</a>{{ cook.first_name }} {{ cook.last_name }} {{ cook.position.name }}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

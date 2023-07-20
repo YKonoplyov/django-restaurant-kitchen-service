@@ -16,6 +16,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+
     "kitchen",
 ]
 
@@ -34,7 +35,7 @@ ROOT_URLCONF = "kitchen_service.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -46,6 +47,8 @@ TEMPLATES = [
         },
     },
 ]
+
+AUTH_USER_MODEL = "kitchen.Cook"
 
 WSGI_APPLICATION = "kitchen_service.wsgi.application"
 
