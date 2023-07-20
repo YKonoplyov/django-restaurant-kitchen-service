@@ -10,6 +10,8 @@ class Ingredient(models.Model):
 class DishType(models.Model):
     type = models.CharField(max_length=255)
 
+    def get_absolute_url(self):
+        return reverse("kitchen:dish-type-list")
 
 class Position(models.Model):
     name = models.CharField(max_length=255)
