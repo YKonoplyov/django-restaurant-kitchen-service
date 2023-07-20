@@ -6,12 +6,19 @@ from django.urls import reverse
 class Ingredient(models.Model):
     name = models.CharField(max_length=255)
 
+    def __str__(self):
+        return self.name
+
 
 class DishType(models.Model):
     type = models.CharField(max_length=255)
 
+    def __str__(self):
+        return self.type
+
     def get_absolute_url(self):
         return reverse("kitchen:dish-type-list")
+
 
 class Position(models.Model):
     name = models.CharField(max_length=255)
@@ -25,7 +32,7 @@ class Cook(AbstractUser):
     years_of_experience = models.IntegerField()
 
     def get_absolute_url(self):
-        return reverse("kitchen:cook-list")
+        return reverse("kitchen:cook-detail", kwargs={"pk": self.pk})
 
 
 class Dish(models.Model):
@@ -35,4 +42,7 @@ class Dish(models.Model):
     dish_type = models.ForeignKey(DishType, on_delete=models.CASCADE)
     ingredients = models.ManyToManyField(Ingredient, related_name="dishes")
     cooks = models.ManyToManyField(Cook, related_name="dishes")
+
+    def get_absolute_url(self):
+        return reverse("kitchen:dish-list")
 

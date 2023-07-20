@@ -24,9 +24,8 @@ class IngredientForm(forms.ModelForm):
         fields = "__all__"
 
 
-# class DishTypeForm(forms.ModelForm):
-#
+# class DishForm(forms.ModelForm):
 #
 #     class Meta:
-#         model = DishType
+#         model = Dish
 #         fields = "__all__"

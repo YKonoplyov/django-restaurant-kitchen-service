@@ -89,4 +89,7 @@ class DishListView(LoginRequiredMixin, generic.ListView):
     paginate_by = 5
 
 
-class Dish
+class DishCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Dish
+    fields = "__all__"
+    template_name = "kitchen/dish-form.html"
