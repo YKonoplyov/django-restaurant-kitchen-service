@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.views import generic
 
 from kitchen.forms import CookForm, CookUpdateForm, IngredientForm
-from kitchen.models import Cook, Ingredient, DishType
+from kitchen.models import Cook, Ingredient, DishType, Dish
 
 
 class Index(generic.View):
@@ -82,3 +82,11 @@ class DishTypeDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = DishType
     template_name = "kitchen/dish_type_confirm_delete.html"
     success_url = reverse_lazy("kitchen:dish-type-list")
+
+
+class DishListView(LoginRequiredMixin, generic.ListView):
+    model = Dish
+    paginate_by = 5
+
+
+class Dish
