@@ -28,12 +28,24 @@ class CookUsernameSearchForm(forms.Form):
     username = forms.CharField(
         required=False,
         max_length=255,
-        label="Search by username",
+        label="",
         widget=forms.TextInput(attrs={"placeholder": "Search by username"})
     )
 
-# class DishForm(forms.ModelForm):
-#
-#     class Meta:
-#         model = Dish
-#         fields = "__all__"
+
+class IngredientSearchForm(forms.Form):
+    name = forms.CharField(
+        required=False,
+        max_length=255,
+        label="",
+        widget=forms.TextInput(attrs={"placeholder": "Search by name"})
+    )
+
+
+class DishSearchForm(forms.Form):
+    name = forms.CharField(
+        required=False,
+        max_length=255,
+        label="",
+        widget=forms.TextInput(attrs={"placeholder": "Search by name"})
+    )

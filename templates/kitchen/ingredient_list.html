@@ -2,6 +2,10 @@
 
 {% block content %}
   <h1>Ingredient list <a href="{% url 'kitchen:ingredient-create' %}">Add ingredient</a></h1>
+  <form action="" method="get">
+    {{ search_field.as_p }}
+    <input type="submit" value="search">
+  </form>
   <ul>
     {% for ingredient in ingredient_list %}
     <li>{{ ingredient.name }}

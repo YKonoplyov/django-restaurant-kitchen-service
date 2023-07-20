@@ -3,18 +3,19 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from kitchen.forms import CookForm, CookUpdateForm, IngredientForm, CookUsernameSearchForm
+from kitchen.forms import CookForm, CookUpdateForm, IngredientForm, CookUsernameSearchForm, IngredientSearchForm, \
+    DishSearchForm
 from kitchen.models import Cook, Ingredient, DishType, Dish
 
 
 class Index(generic.View):
-    # def get_context_data(self, **kwargs):
-    #     context = dict
-    #     context["some_key"] = "pisun 20 sm"
-    #     return context
+    def get_context_data(self, **kwargs):
+        context = {}
+        context["some_key"] = "pisun 20 sm"
+        return context
 
     def get(self, request):
-        return render(request, "kitchen/index.html",)
+        return render(request, "kitchen/index.html", context=self.get_context_data())
 
 
 class CookListView(LoginRequiredMixin, generic.ListView):
@@ -65,6 +66,25 @@ class IngredientListView(LoginRequiredMixin, generic.ListView):
     model = Ingredient
     paginate_by = 5
 
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(IngredientListView, self).get_context_data()
+
+        name = self.request.GET.get("name", "")
+
+        context["search_field"] = IngredientSearchForm(initial={"name": name})
+
+        return context
+
+    def get_queryset(self):
+        self.queryset = Ingredient.objects.all()
+
+        form = IngredientSearchForm(self.request.GET)
+
+        if form.is_valid():
+            return self.queryset.filter(name__icontains=form.cleaned_data["name"])
+
+        return self.queryset
+
 
 class IngredientCreateView(LoginRequiredMixin, generic.CreateView):
     model = Ingredient
@@ -110,6 +130,22 @@ class DishTypeDeleteView(LoginRequiredMixin, generic.DeleteView):
 class DishListView(LoginRequiredMixin, generic.ListView):
     model = Dish
     paginate_by = 5
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(DishListView, self).get_context_data()
+
+        name = self.request.GET.get("name", "")
+
+        context["search_field"] = DishSearchForm(initial={"name": name})
+
+        return context
+
+    def get_queryset(self):
+        self.queryset = Dish.objects.all()
+        form = DishSearchForm(self.request.GET)
+
+        if form.is_valid():
+            return self.queryset.filter(name__icontains=form.cleaned_data["name"])
 
 
 class DishCreateView(LoginRequiredMixin, generic.CreateView):
