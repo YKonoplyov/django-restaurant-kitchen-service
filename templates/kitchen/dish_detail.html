@@ -16,5 +16,8 @@
       <li>{{ cook.username }}</li>
     {% endfor %}
   </ul>
+  <h2>Description:</h2>
+  <p>{{ dish.description }}</p>
   <a href="{% url 'kitchen:dish-update' pk=dish.id %}"><button>Update</button></a>
+  <a href="{% url 'kitchen:dish-delete' pk=dish.id %}"><button>Delete</button></a>
 {% endblock %}
