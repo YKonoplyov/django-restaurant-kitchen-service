@@ -7,4 +7,5 @@
     <li>Experience: {{ cook.years_of_experience }}</li>
   </ul>
   <a href="{% url 'kitchen:cook-update' pk=cook.id %}"><button>Update</button></a>
+  <a href="{% url 'kitchen:cook-delete' pk=cook.id %}"><button>Delete</button></a>
 {% endblock %}
