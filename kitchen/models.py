@@ -11,10 +11,10 @@ class Ingredient(models.Model):
 
 
 class DishType(models.Model):
-    type = models.CharField(max_length=255)
+    name = models.CharField(max_length=255)
 
     def __str__(self):
-        return self.type
+        return self.name
 
     def get_absolute_url(self):
         return reverse("kitchen:dish-type-list")

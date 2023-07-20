@@ -4,14 +4,13 @@ from django.urls import reverse_lazy
 from django.views import generic
 
 from kitchen.forms import CookForm, CookUpdateForm, IngredientForm, CookUsernameSearchForm, IngredientSearchForm, \
-    DishSearchForm
+    DishSearchForm, DishTypeSearchForm
 from kitchen.models import Cook, Ingredient, DishType, Dish
 
 
 class Index(generic.View):
     def get_context_data(self, **kwargs):
         context = {}
-        context["some_key"] = "pisun 20 sm"
         return context
 
     def get(self, request):
@@ -20,7 +19,7 @@ class Index(generic.View):
 
 class CookListView(LoginRequiredMixin, generic.ListView):
     model = Cook
-    paginate_by = 4
+    paginate_by = 8
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(CookListView, self).get_context_data()
@@ -64,7 +63,7 @@ class CookDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 class IngredientListView(LoginRequiredMixin, generic.ListView):
     model = Ingredient
-    paginate_by = 5
+    paginate_by = 8
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(IngredientListView, self).get_context_data()
@@ -103,9 +102,26 @@ class IngredientDeleteView(LoginRequiredMixin, generic.DeleteView):
     success_url = reverse_lazy("kitchen:ingredient-list")
 
 
-class DishTypeList(LoginRequiredMixin, generic.ListView):
+class DishTypeListView(LoginRequiredMixin, generic.ListView):
     model = DishType
     template_name = "kitchen/dish_type_list.html"
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(DishTypeListView, self).get_context_data()
+
+        type_ = self.request.GET.get("type", "")
+
+        context["search_field"] = DishSearchForm(initial={"type": type_})
+
+        return context
+
+    def get_queryset(self):
+        self.queryset = Dish.objects.all()
+        form = DishTypeSearchForm(self.request.GET)
+
+        if form.is_valid():
+            return self.queryset.filter(name__icontains=form.cleaned_data["type"])
+
 
 
 class DishTypeCreateView(LoginRequiredMixin, generic.CreateView):

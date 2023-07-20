@@ -4,6 +4,10 @@
   <h1>Dish type list
     <a href="{% url 'kitchen:dish-type-create' %}">Create</a>
   </h1>
+  <form action="" method="get">
+    {{ search_field.as_p }}
+    <input type="submit" value="Search">
+  </form>
   <ul>
     {% for dishtype in dishtype_list %}
     <li>{{ dishtype.type }}
