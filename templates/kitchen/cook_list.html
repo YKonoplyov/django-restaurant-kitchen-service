@@ -1,7 +1,12 @@
 {% extends "base.html" %}
+{% load crispy_forms_filters %}
 
 {% block content %}
   <h1>Cooks list <a href="{% url 'kitchen:cook-create' %}">Add cook</a></h1>
+  <form action="" method="get">
+    {{ search_field.as_p }}
+    <input type="submit" value="search">
+  </form>
   <ul>
     {% for cook in cook_list %}
     <li><a href="{% url 'kitchen:cook-detail' pk=cook.id %}">{{ cook.username }}</a>{{ cook.first_name }} {{ cook.last_name }} {{ cook.position.name }}</li>

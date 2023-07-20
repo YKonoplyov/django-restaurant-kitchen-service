@@ -3,18 +3,41 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from kitchen.forms import CookForm, CookUpdateForm, IngredientForm
+from kitchen.forms import CookForm, CookUpdateForm, IngredientForm, CookUsernameSearchForm
 from kitchen.models import Cook, Ingredient, DishType, Dish
 
 
 class Index(generic.View):
+    # def get_context_data(self, **kwargs):
+    #     context = dict
+    #     context["some_key"] = "pisun 20 sm"
+    #     return context
+
     def get(self, request):
-        return render(request, "kitchen/index.html")
+        return render(request, "kitchen/index.html",)
 
 
 class CookListView(LoginRequiredMixin, generic.ListView):
     model = Cook
-    paginate_by = 8
+    paginate_by = 4
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(CookListView, self).get_context_data()
+
+        username = self.request.GET.get("username", "")
+
+        context["search_field"] = CookUsernameSearchForm(
+            initial={"username": username}
+        )
+
+        return context
+
+    def get_queryset(self):
+        self.queryset = Cook.objects.all()
+        form = CookUsernameSearchForm(self.request.GET)
+
+        if form.is_valid():
+            return self.queryset.filter(username__icontains=form.cleaned_data["username"])
 
 
 class CookDetailView(LoginRequiredMixin, generic.DetailView):

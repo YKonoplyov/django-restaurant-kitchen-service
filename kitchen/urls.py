@@ -5,7 +5,8 @@ from kitchen.views import (
     IngredientCreateView, IngredientUpdateView, DishTypeList,
     IngredientDeleteView, CookDeleteView, DishTypeCreateView,
     DishTypeDeleteView, DishTypeUpdateView, DishListView,
-    DishCreateView, DishDetailView, DishUpdateView, DishDeleteView
+    DishCreateView, DishDetailView, DishUpdateView,
+    DishDeleteView
 )
 
 urlpatterns = [
