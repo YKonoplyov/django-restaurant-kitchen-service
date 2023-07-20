@@ -6,7 +6,10 @@
   </h1>
   <ul>
     {% for dishtype in dishtype_list %}
-    <li>{{ dishtype.type }}  <a href="{% url 'kitchen:dish-type-delete' pk=dishtype.id %}">Delete</a></li>
+    <li>{{ dishtype.type }}
+      <a href="{% url 'kitchen:dish-type-update' pk=dishtype.id %}">Update</a>
+      <a href="{% url 'kitchen:dish-type-delete' pk=dishtype.id %}">Delete</a>
+    </li>
     {% endfor %}
   </ul>
 {% endblock %}
