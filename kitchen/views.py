@@ -54,6 +54,11 @@ class IngredientUpdateView(LoginRequiredMixin, generic.UpdateView):
     success_url = reverse_lazy("kitchen:ingredient-list")
 
 
+class IngredientDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Ingredient
+    success_url = reverse_lazy("kitchen:ingredient-list")
+
+
 class DishTypeList(LoginRequiredMixin, generic.ListView):
     model = DishType
     template_name = "kitchen/dish_type_list.html"
