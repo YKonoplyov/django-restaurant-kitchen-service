@@ -46,3 +46,9 @@ class IngredientCreateView(LoginRequiredMixin, generic.CreateView):
     form_class = IngredientForm
     success_url = reverse_lazy("kitchen:ingredient-list")
 
+
+class IngredientUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Ingredient
+    form_class = IngredientForm
+    success_url = reverse_lazy("kitchen:ingredient-list")
+

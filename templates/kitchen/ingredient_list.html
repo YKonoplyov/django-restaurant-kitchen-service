@@ -4,7 +4,7 @@
   <h1>Ingredient list <a href="{% url 'kitchen:ingredient-create' %}">Add ingredient</a></h1>
   <ul>
     {% for ingredient in ingredient_list %}
-    <li>{{ ingredient.name }}</li>
+    <li>{{ ingredient.name }} <a href="{% url 'kitchen:ingredient-update' pk=ingredient.id %}">Update</a></li>
     {% endfor %}
   </ul>
 {% endblock %}
