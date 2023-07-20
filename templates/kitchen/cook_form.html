@@ -7,7 +7,7 @@
   <p>Your username and password didn't match. Please try again.</p>
 {% endif %}
 
-<h1>Create cook</h1>
+<h1>{{ object|yesno:"Update,Create" }} cook</h1>
 
 {% if next %}
   <p>Please login to see this page.</p>
@@ -17,7 +17,7 @@
   {% csrf_token %}
   {{ form.as_p }}
 
-  <input type="submit" value="create" class="btn btn-primary" />
+  <input type="submit" value="Yes" class="btn btn-primary" />
   <input type="hidden" name="next" value="{{ next }}" />
 </form>
 

@@ -6,4 +6,5 @@
     <li>Position: {{ cook.position }}</li>
     <li>Experience: {{ cook.years_of_experience }}</li>
   </ul>
+  <a href="{% url 'kitchen:cook-update' pk=cook.id %}"><button>Update</button></a>
 {% endblock %}
