@@ -6,7 +6,7 @@
   <ul>
       {% for ingredient in dish.ingredients.all %}
     <li>
-      {{ dish.ingredients.name }}
+      {{ ingredient.name }}
     </li>
       {% endfor %}
   </ul>
@@ -16,4 +16,5 @@
       <li>{{ cook.username }}</li>
     {% endfor %}
   </ul>
+  <a href="{% url 'kitchen:dish-update' pk=dish.id %}"><button>Update</button></a>
 {% endblock %}
