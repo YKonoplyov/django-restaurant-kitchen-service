@@ -9,6 +9,7 @@ from kitchen.models import Cook, Ingredient, DishType, Dish
 
 
 class Index(generic.View):
+
     def get_context_data(self, **kwargs):
         context = {}
         return context

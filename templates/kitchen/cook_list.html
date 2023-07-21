@@ -2,7 +2,11 @@
 {% load crispy_forms_filters %}
 
 {% block content %}
-  <h1>Cooks list <a href="{% url 'kitchen:cook-create' %}">Add cook</a></h1>
+  <h1>Cooks list
+    {% if user.position == "main cook" %}
+      <a href="{% url 'kitchen:cook-create' %}">Add cook</a>
+    {% endif %}
+  </h1>
   <div class="col-sm-5 search">
     <form action="" method="get">
       {{ search_field|crispy }}
@@ -13,14 +17,14 @@
     <tr>
       <th>Username</th>
       <th>Name</th>
-      <th>Detail</th>
+      <th>Position</th>
       <th>Dishes</th>
     </tr>
     {% for cook in cook_list %}
       <tr>
         <td><a href="{% url 'kitchen:cook-detail' pk=cook.id %}">{{ cook.username}}</a></td>
         <td>{{ cook.first_name}} {{ cook.last_name }}</td>
-        <td>{{ cook.years_of_experience }}</td>
+        <td>{{ cook.position }}</td>
         <td>{{ cook.dishes.all|join:", " }}</td>
       </tr>
     {% endfor %}
