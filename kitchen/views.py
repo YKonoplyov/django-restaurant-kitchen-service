@@ -1,5 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic
 
@@ -189,3 +189,11 @@ class DishUpdateView(LoginRequiredMixin, generic.UpdateView):
 class DishDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Dish
     success_url = reverse_lazy("kitchen:dish-list")
+
+
+def cook_done_work(request, dish_id):
+    cook = Cook.objects.get(id=request.user.id)
+    dish = Dish.objects.get(id=dish_id)
+    dish.finished_cooks.add(cook)
+    dish.save()
+    return redirect(reverse_lazy('kitchen:dish-details', kwargs={"pk": dish_id}))

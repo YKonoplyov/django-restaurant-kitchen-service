@@ -42,7 +42,10 @@ class Dish(models.Model):
     dish_type = models.ForeignKey(DishType, on_delete=models.CASCADE)
     ingredients = models.ManyToManyField(Ingredient, related_name="dishes")
     cooks = models.ManyToManyField(Cook, related_name="dishes")
-    # progres = models.IntegerField(default=0)
+    finished_cooks = models.ManyToManyField(Cook, related_name="dishes_finished")
+
+    def progres_percent(self):
+        return round(len(self.finished_cooks.all()) / len(self.cooks.all()), 2) * 100
 
     def get_absolute_url(self):
         return reverse("kitchen:dish-list")
