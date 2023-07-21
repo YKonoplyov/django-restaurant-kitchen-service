@@ -42,7 +42,11 @@ class Dish(models.Model):
     dish_type = models.ForeignKey(DishType, on_delete=models.CASCADE)
     ingredients = models.ManyToManyField(Ingredient, related_name="dishes")
     cooks = models.ManyToManyField(Cook, related_name="dishes")
+    # progres = models.IntegerField(default=0)
 
     def get_absolute_url(self):
         return reverse("kitchen:dish-list")
+
+    def __str__(self):
+        return self.name
 

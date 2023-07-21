@@ -1,17 +1,27 @@
 {% extends "base.html" %}
+{% load crispy_forms_filters %}
 
 {% block content %}
   <h1>Ingredient list <a href="{% url 'kitchen:ingredient-create' %}">Add ingredient</a></h1>
-  <form action="" method="get">
-    {{ search_field.as_p }}
-    <input type="submit" value="search">
-  </form>
-  <ul>
-    {% for ingredient in ingredient_list %}
-    <li>{{ ingredient.name }}
-      <a href="{% url 'kitchen:ingredient-update' pk=ingredient.id %}">Update</a>
-      <a href="{% url 'kitchen:ingredient-delete' pk=ingredient.id %}">Delete</a>
-    </li>
-    {% endfor %}
-  </ul>
+  <div class="col-sm-5">
+    <form action="" method="get" class="">
+      <p class="">
+        {{ search_field|crispy}}
+        <input type="submit" value="Search" class="btn btn-secondary righ">
+      </p>
+    </form>
+  </div>
+  <div class="col-sm-6">
+    <ul class="list-unstyled">
+      {% for ingredient in ingredient_list %}
+
+        <li class="list-group-item">
+          {{ ingredient.name }}
+            <a href="{% url 'kitchen:ingredient-update' pk=ingredient.id %}" class="btn btn-secondary ">Update</a>
+            <a href="{% url 'kitchen:ingredient-delete' pk=ingredient.id %}" class="btn btn-danger ">Delete</a>
+        </li>
+
+      {% endfor %}
+    </ul>
+  </div>
 {% endblock %}

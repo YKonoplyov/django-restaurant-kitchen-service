@@ -1,19 +1,29 @@
 {% extends "base.html" %}
+{% load crispy_forms_filters %}
 
 {% block content %}
   <h1>Dish type list
-    <a href="{% url 'kitchen:dish-type-create' %}">Create</a>
+    <a href="{% url 'kitchen:dish-type-create' %}" class="btn btn-primary">Create</a>
   </h1>
-  <form action="" method="get">
-    {{ search_field.as_p }}
-    <input type="submit" value="Search">
-  </form>
-  <ul>
-    {% for dishtype in dishtype_list %}
-    <li>{{ dishtype.type }}
-      <a href="{% url 'kitchen:dish-type-update' pk=dishtype.id %}">Update</a>
-      <a href="{% url 'kitchen:dish-type-delete' pk=dishtype.id %}">Delete</a>
-    </li>
-    {% endfor %}
-  </ul>
+  <div class="col-sm-5">
+    <form action="" method="get" class="">
+      <p class="">
+        {{ search_field|crispy}}
+        <input type="submit" value="Search" class="btn btn-secondary righ">
+      </p>
+    </form>
+  </div>
+  <div class="col-sm-6">
+    <ul class="list-unstyled">
+      {% for dishtype in dishtype_list %}
+
+        <li class="list-group-item">
+          {{ dishtype.name }}
+            <a href="{% url 'kitchen:dish-type-update' pk=dishtype.id %}" class="btn btn-secondary ">Update</a>
+            <a href="{% url 'kitchen:dish-type-delete' pk=dishtype.id %}" class="btn btn-danger ">Delete</a>
+        </li>
+
+      {% endfor %}
+    </ul>
+  </div>
 {% endblock %}

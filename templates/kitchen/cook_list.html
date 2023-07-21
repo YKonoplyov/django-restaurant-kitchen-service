@@ -3,13 +3,26 @@
 
 {% block content %}
   <h1>Cooks list <a href="{% url 'kitchen:cook-create' %}">Add cook</a></h1>
-  <form action="" method="get">
-    {{ search_field.as_p }}
-    <input type="submit" value="search">
-  </form>
-  <ul>
+  <div class="col-sm-5 search">
+    <form action="" method="get">
+      {{ search_field|crispy }}
+      <input type="submit" value="search">
+    </form>
+  </div>
+  <table class="table table-bordered">
+    <tr>
+      <th>Username</th>
+      <th>Name</th>
+      <th>Detail</th>
+      <th>Dishes</th>
+    </tr>
     {% for cook in cook_list %}
-    <li><a href="{% url 'kitchen:cook-detail' pk=cook.id %}">{{ cook.username }}</a>{{ cook.first_name }} {{ cook.last_name }} {{ cook.position.name }}</li>
+      <tr>
+        <td><a href="{% url 'kitchen:cook-detail' pk=cook.id %}">{{ cook.username}}</a></td>
+        <td>{{ cook.first_name}} {{ cook.last_name }}</td>
+        <td>{{ cook.years_of_experience }}</td>
+        <td>{{ cook.dishes.all|join:", " }}</td>
+      </tr>
     {% endfor %}
-  </ul>
+  </table>
 {% endblock %}
