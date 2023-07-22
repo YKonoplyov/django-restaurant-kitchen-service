@@ -176,8 +176,8 @@ class DishDetailView(LoginRequiredMixin, generic.DetailView):
 
 class DishUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Dish
-    fields = "__all__"
-    template_name = "kitchen/dish_form.html"
+    form_class = DishForm
+    success_url = reverse_lazy("kitchen:dish-list")
 
     def get_success_url(self):
 
