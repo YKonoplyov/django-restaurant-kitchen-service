@@ -29,9 +29,10 @@ class DishForm(forms.ModelForm):
     class Meta:
         model = Dish
         fields = "__all__"
-        exclude = ("progres",)
+        exclude = ("finished_cooks",)
         widgets = {
-            "cooks": forms.SelectMultiple(),
+            "cooks": forms.CheckboxSelectMultiple(),
+            "ingredients": forms.CheckboxSelectMultiple(),
         }
 
 
