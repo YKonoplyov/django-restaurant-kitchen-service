@@ -20,7 +20,7 @@ class Index(generic.View):
 
 class CookListView(LoginRequiredMixin, generic.ListView):
     model = Cook
-    paginate_by = 5
+    paginate_by = 3
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(CookListView, self).get_context_data()
@@ -64,7 +64,7 @@ class CookDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 class IngredientListView(LoginRequiredMixin, generic.ListView):
     model = Ingredient
-    paginate_by = 8
+    paginate_by = 6
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(IngredientListView, self).get_context_data()
