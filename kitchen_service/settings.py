@@ -22,7 +22,6 @@ INSTALLED_APPS = [
     "debug_toolbar",
     "crispy_bootstrap4",
 
-
     "kitchen",
 ]
 
@@ -93,6 +92,10 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = "static/"
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static"
+]
 
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"

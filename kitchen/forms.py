@@ -24,6 +24,17 @@ class IngredientForm(forms.ModelForm):
         fields = "__all__"
 
 
+class DishForm(forms.ModelForm):
+
+    class Meta:
+        model = Dish
+        fields = "__all__"
+        exclude = ("progres",)
+        widgets = {
+            "cooks": forms.SelectMultiple(),
+        }
+
+
 class CookUsernameSearchForm(forms.Form):
     username = forms.CharField(
         required=False,

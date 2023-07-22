@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.views import generic
 
 from kitchen.forms import CookForm, CookUpdateForm, IngredientForm, CookUsernameSearchForm, IngredientSearchForm, \
-    DishSearchForm, DishTypeSearchForm
+    DishSearchForm, DishTypeSearchForm, DishForm
 from kitchen.models import Cook, Ingredient, DishType, Dish
 
 
@@ -45,7 +45,7 @@ class CookDetailView(LoginRequiredMixin, generic.DetailView):
     model = Cook
 
 
-class CookCreateView(LoginRequiredMixin, generic.CreateView):
+class CookCreateView(generic.CreateView):
     model = Cook
     form_class = CookForm
     success_url = reverse_lazy("kitchen:cook-list")
@@ -166,8 +166,8 @@ class DishListView(LoginRequiredMixin, generic.ListView):
 
 class DishCreateView(LoginRequiredMixin, generic.CreateView):
     model = Dish
-    fields = "__all__"
-    template_name = "kitchen/dish-form.html"
+    form_class = DishForm
+    success_url = reverse_lazy("kitchen:dish-list")
 
 
 class DishDetailView(LoginRequiredMixin, generic.DetailView):
@@ -177,7 +177,7 @@ class DishDetailView(LoginRequiredMixin, generic.DetailView):
 class DishUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Dish
     fields = "__all__"
-    template_name = "kitchen/dish-form.html"
+    template_name = "kitchen/dish_form.html"
 
     def get_success_url(self):
 
