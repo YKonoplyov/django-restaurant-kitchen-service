@@ -1,29 +1,38 @@
 {% extends "base.html" %}
 {% load crispy_forms_filters %}
 
-{% block content %}
-  <h1>Dish type list
-    <a href="{% url 'kitchen:dish-type-create' %}" class="btn btn-primary">Create</a>
-  </h1>
-  <div class="col-sm-5">
-    <form action="" method="get" class="">
-      <p class="">
-        {{ search_field|crispy}}
-        <input type="submit" value="Search" class="btn btn-secondary righ">
-      </p>
+{% block navigation_pages %}
+  <li class="tm-tab-link active">
+    <a class="tm-tab-link active" href="">Dish types</a>
+  </li>
+  <li class="tm-tab-link">
+    {% if not user.position == "main cook" %}
+      <a href="{% url 'kitchen:dish-type-create' %}" class="tm-tab-link active">Add type</a>
+    {% endif %}
+  </li>
+  <li>
+    <form action="" method="get" class="d-sm-inline-block">
+      {{ search_field.crispy }}
+      <input type="submit" value="search" class="btn btn-secondary">
     </form>
-  </div>
-  <div class="col-sm-6">
-    <ul class="list-unstyled">
-      {% for dishtype in dishtype_list %}
+  </li>
+{% endblock %}
+{% block list_content %}
 
-        <li class="list-group-item">
-          {{ dishtype.name }}
-            <a href="{% url 'kitchen:dish-type-update' pk=dishtype.id %}" class="btn btn-secondary ">Update</a>
-            <a href="{% url 'kitchen:dish-type-delete' pk=dishtype.id %}" class="btn btn-danger ">Delete</a>
-        </li>
-
-      {% endfor %}
-    </ul>
-  </div>
+  {% for dish_type in dishtype_list %}
+    <div class="tm-list">
+      <div class="tm-list-item">
+        <div class="tm-black-bg tm-list-item-text">
+          <h3 class="tm-list-item-name">{{ dish_type.name }}
+            <span class="tm-list-item-price">
+            <a href="{% url 'kitchen:dish-type-update' pk=dish_type.id %}">Update</a>
+              <span class="tm-list-item-price">
+                <a href="{% url 'kitchen:dish-type-delete' pk=dish_type.id %}">Delete</a>
+              </span>
+          </span></h3>
+          <p class="tm-list-item-description">Experience: {{ cook.years_of_experience }}. Position: {{ cook.position }}</p>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
 {% endblock %}

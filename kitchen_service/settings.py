@@ -1,5 +1,7 @@
+from audioop import reverse
 from pathlib import Path
 
+from django.urls import reverse_lazy
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -97,6 +99,7 @@ STATICFILES_DIRS = [
     BASE_DIR / "static"
 ]
 
+LOGIN_REDIRECT_URL = "/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 

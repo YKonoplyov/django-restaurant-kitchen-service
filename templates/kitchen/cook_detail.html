@@ -16,11 +16,9 @@
             {{ cook.username }}
             <span class="">
               <a class="tm-list-item-price" href="{% url 'kitchen:cook-update' pk=cook.id %}">Update</a>
-            {% if user.position.name == "main cook" %}
               <span>
                 <a class="tm-list-item-price" href="{% url 'kitchen:cook-delete' pk=cook.id %}">Delete</a>
               </span>
-            {% endif %}
             </span>
           </h3>
           <p class="tm-list-item-description">
