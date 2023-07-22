@@ -1,16 +1,33 @@
 {% extends "base.html" %}
+{% load crispy_forms_filters %}
+{% block title %}
+  <title>Dishes</title>
+{% endblock %}
+{% block navigation_pages %}
+  <li class="tm-tab-link active">
+    <a class="tm-tab-link active" href="">Dishes</a>
+  </li>
+  <li class="tm-tab-link">
+      <a href="{% url 'kitchen:dish-create' %}" class="tm-tab-link active">Add dish</a>
+  </li>
+  <li>
+    <form action="" method="get" class="d-sm-inline-block">
+      {{ search_field.crispy }}
+      <input type="submit" value="search" class="btn btn-secondary">
+    </form>
+  </li>
+{% endblock %}
+{% block list_content %}
 
-{% block content %}
-  <h1>Dishes list 
-      <a href="{% url 'kitchen:dish-create' %}">Create</a></h1>
-  <form action="" method="get">
-    {{ search_field.as_p }}
-    <input type="submit" value="search">
-  </form>
-  <ul>
-    {% for dish in dish_list %}
-      <li>{{ dish.name }} <a href="{% url 'kitchen:dish-details' pk=dish.id %}">Details</a></li>
-    {% endfor %}
-  </ul>
-
+  {% for dish in dish_list %}
+    <div class="tm-list">
+      <div class="tm-list-item">
+        <div class="tm-black-bg tm-list-item-text">
+          <h3 class="tm-list-item-name">{{ dish.name }}<span class="tm-list-item-price"><a
+              href="{% url 'kitchen:dish-details' pk=dish.id %}">Details</a></span></h3>
+          <p class="tm-list-item-description">{{ dish.type }}</p>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
 {% endblock %}
