@@ -1,30 +1,22 @@
-{% if items.has_other_pages %}
-  <p><strong>Page {{ items.number }} of {{ items.paginator.num_pages }} </strong></p>
+{% load query_transform %}
+{% if is_paginated %}
+      <div class="tm-list">
+      <div class="tm-list-item">
+        <div class="tm-black-bg tm-list-item-text">
+              <span>
+            {% if page_obj.has_previous %}
+                <h1 class="btn-lg tm-list-item-price pagination-btn">
+                  <a href="?{% query_transform request page=page_obj.previous_page_number %}" class="">prev</a>
+                </h1>
+            {% endif %}
+            {% if page_obj.has_next %}
+                <h2 class="btn-lg tm-list-item-name float-right pagination-btn">
+                  <a href="?{% query_transform request page=page_obj.next_page_number %}" class="">next</a>
+                </h2>
+            {% endif %}
+              </span>
+        </div>
+      </div>
+    </div>
 
-  <nav aria-label="Page navigation example">
-    <ul class="pagination">
-      {% if items.has_previous %}
-        <li class="page-item">
-          <a class="page-link" href="?page={{ items.previous_page_number }}">Previous</a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="?page={{ items.previous_page_number }}">{{ items.previous_page_number }}</a>
-        </li>
-      {% endif %}
-
-      <li class="page-item active">
-        <a class="page-link" href="?page={{ items.number }}">{{ items.number  }}</a>
-      </li>
-
-    {% if items.has_next %}
-      <li class="page-item">
-        <a class="page-link" href="?page={{ items.next_page_number }}">{{ items.next_page_number }}</a>
-      </li>
-      <li class="page-item">
-        <a class="page-link" href="?page={{ items.next_page_number }}">Next</a>
-      </li>
-    {% endif %}
-    </ul>
-
-  </nav>
 {% endif %}
