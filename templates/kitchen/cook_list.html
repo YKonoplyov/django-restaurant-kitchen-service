@@ -1,32 +1,33 @@
 {% extends "base.html" %}
 {% load crispy_forms_filters %}
 
-{% block content %}
-  <h1>Cooks list
-    {% if user.position == "main cook" %}
-      <a href="{% url 'kitchen:cook-create' %}">Add cook</a>
+{% block navigation_pages %}
+  <li class="tm-tab-link active">
+    <a class="tm-tab-link active" href="">Cooks list</a>
+  </li>
+  <li class="tm-tab-link">
+    {% if not user.position == "main cook" %}
+      <a href="{% url 'kitchen:cook-create' %}" class="tm-tab-link active">Add cook</a>
     {% endif %}
-  </h1>
-  <div class="col-sm-5 search">
-    <form action="" method="get">
-      {{ search_field|crispy }}
-      <input type="submit" value="search">
+  </li>
+  <li>
+    <form action="" method="get" class="d-sm-inline-block">
+      {{ search_field.crispy }}
+      <input type="submit" value="search" class="btn btn-secondary">
     </form>
-  </div>
-  <table class="table table-bordered">
-    <tr>
-      <th>Username</th>
-      <th>Name</th>
-      <th>Position</th>
-      <th>Dishes</th>
-    </tr>
-    {% for cook in cook_list %}
-      <tr>
-        <td><a href="{% url 'kitchen:cook-detail' pk=cook.id %}">{{ cook.username}}</a></td>
-        <td>{{ cook.first_name}} {{ cook.last_name }}</td>
-        <td>{{ cook.position }}</td>
-        <td>{{ cook.dishes.all|join:", " }}</td>
-      </tr>
-    {% endfor %}
-  </table>
+  </li>
+{% endblock %}
+{% block list_content %}
+
+  {% for cook in cook_list %}
+    <div class="tm-list">
+      <div class="tm-list-item">
+        <div class="tm-black-bg tm-list-item-text">
+          <h3 class="tm-list-item-name">{{ cook.first_name}} {{ cook.last_name }}<span class="tm-list-item-price"><a
+              href="{% url 'kitchen:cook-detail' pk=cook.id %}">Details</a></span></h3>
+          <p class="tm-list-item-description">Experience: {{ cook.years_of_experience }}. Position: {{ cook.position }}</p>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
 {% endblock %}
