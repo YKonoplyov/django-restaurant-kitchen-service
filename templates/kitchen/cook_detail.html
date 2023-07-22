@@ -1,11 +1,39 @@
 {% extends "base.html" %}
+{% load crispy_forms_filters %}
 
-{% block content %}
-  <h1>Cook {{ cook.first_name }} {{ cook.last_name }} details:</h1>
-  <ul>
-    <li>Position: {{ cook.position }}</li>
-    <li>Experience: {{ cook.years_of_experience }}</li>
-  </ul>
-  <a href="{% url 'kitchen:cook-update' pk=cook.id %}"><button>Update</button></a>
-  <a href="{% url 'kitchen:cook-delete' pk=cook.id %}"><button>Delete</button></a>
+{% block navigation_pages %}
+  <li class="tm-tab-link active">
+    <h1 class="tm-tab-link active" >{{ cook.first_name }} {{ cook.last_name }}</h1>
+  </li>
+{% endblock %}
+
+{% block list_content %}
+    <div class="tm-list">
+      <div class="tm-list-item">
+        <div class="tm-black-bg tm-list-item-text">
+          <h3 class="tm-list-item-name">{{ cook.first_name }} {{ cook.last_name }}
+            <br>
+            {{ cook.username }}
+            <span class="">
+              <a class="tm-list-item-price" href="{% url 'kitchen:cook-update' pk=cook.id %}">Update</a>
+            {% if user.position.name == "main cook" %}
+              <span>
+                <a class="tm-list-item-price" href="{% url 'kitchen:cook-delete' pk=cook.id %}">Delete</a>
+              </span>
+            {% endif %}
+            </span>
+          </h3>
+          <p class="tm-list-item-description">
+            Experience: {{ cook.years_of_experience }}.
+            <br>
+            Position: {{ cook.position }}
+            <br>
+            <h4>Dishes:</h4>
+            {% for dish in cook.dishes.all %}
+              <p>{{ dish }}</p>
+            {% endfor %}
+          </p>
+        </div>
+      </div>
+    </div>
 {% endblock %}
