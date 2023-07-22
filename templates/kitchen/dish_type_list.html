@@ -2,19 +2,29 @@
 {% load crispy_forms_filters %}
 
 {% block navigation_pages %}
-  <li class="tm-tab-link active">
-    <a class="tm-tab-link active" href="">Dish types</a>
+  <li class="tm-tab-link">
+    <a class="tm-tab-link" href="">Dish types</a>
   </li>
   <li class="tm-tab-link">
     {% if not user.position == "main cook" %}
-      <a href="{% url 'kitchen:dish-type-create' %}" class="tm-tab-link active">Add type</a>
+      <a href="{% url 'kitchen:dish-type-create' %}">Add type</a>
     {% endif %}
   </li>
   <li>
-    <form action="" method="get" class="d-sm-inline-block">
-      {{ search_field.crispy }}
-      <input type="submit" value="search" class="btn btn-secondary">
-    </form>
+    <div class="dropdown">
+      <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Search
+      </a>
+      <div class="dropdown-menu">
+      <form class="px-4 py-3" method="get">
+        <div class="form-group">
+          <label for="exampleDropdownFormEmail1"></label>
+          <input type="text" class="form-control" name="name" id="exampleDropdownFormEmail1" placeholder="example: soup">
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+      </form>
+      </div>
+    </div>
   </li>
 {% endblock %}
 {% block list_content %}

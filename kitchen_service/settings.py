@@ -21,8 +21,8 @@ INSTALLED_APPS = [
 
     "bootstrap4",
     "crispy_forms",
-    "debug_toolbar",
     "crispy_bootstrap4",
+    "debug_toolbar",
 
     "kitchen",
 ]
@@ -84,6 +84,7 @@ AUTH_PASSWORD_VALIDATORS = [
         "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
+
 
 LANGUAGE_CODE = "en-us"
 

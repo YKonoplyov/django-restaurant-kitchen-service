@@ -4,17 +4,27 @@
   <title>Dishes</title>
 {% endblock %}
 {% block navigation_pages %}
-  <li class="tm-tab-link active">
-    <a class="tm-tab-link active" href="">Dishes</a>
+  <li class="">
+    <a class="tm-tab-link" href="">Dishes</a>
   </li>
   <li class="tm-tab-link">
-      <a href="{% url 'kitchen:dish-create' %}" class="tm-tab-link active">Add dish</a>
+      <a href="{% url 'kitchen:dish-create' %}" class="tm-tab-link">Add dish</a>
   </li>
   <li>
-    <form action="" method="get" class="d-sm-inline-block">
-      {{ search_field.crispy }}
-      <input type="submit" value="search" class="btn btn-secondary">
-    </form>
+    <div class="dropdown">
+      <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Search
+      </a>
+      <div class="dropdown-menu">
+      <form class="px-4 py-3" method="get">
+        <div class="form-group">
+          <label for="exampleDropdownFormEmail1"></label>
+          <input type="text" class="form-control" name="name" id="exampleDropdownFormEmail1" placeholder="example: borch">
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+      </form>
+      </div>
+    </div>
   </li>
 {% endblock %}
 {% block list_content %}
