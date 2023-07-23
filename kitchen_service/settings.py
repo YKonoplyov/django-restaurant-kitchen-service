@@ -22,7 +22,6 @@ INSTALLED_APPS = [
     "bootstrap4",
     "crispy_forms",
     "crispy_bootstrap4",
-    "debug_toolbar",
 
     "kitchen",
 ]
@@ -37,8 +36,6 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-
-    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 ROOT_URLCONF = "kitchen_service.urls"
@@ -103,7 +100,3 @@ STATICFILES_DIRS = [
 LOGIN_REDIRECT_URL = "/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
-INTERNAL_IPS = [
-    "127.0.0.1"
-]
