@@ -1,3 +1,4 @@
+from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
@@ -14,7 +15,12 @@ from kitchen.models import Cook, Ingredient, DishType, Dish
 class Index(generic.View):
 
     def get_context_data(self, **kwargs):
-        context = {}
+        context = {
+            "cooks": len(get_user_model().objects.all()),
+            "dishes": len(Dish.objects.all()),
+            "ingredients": len(Ingredient.objects.all()),
+            "dish_types": len(DishType.objects.all())
+        }
         return context
 
     def get(self, request):

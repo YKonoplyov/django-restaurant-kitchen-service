@@ -271,8 +271,15 @@ h2 { margin-top: 0; }
 }
 
 .tm-special-item {
-    max-width: 320px;
-    margin: 30px 10px;
+    min-height: 100px;
+    min-width: 300px;
+    margin: 60px 20px;
+}
+
+.tm-special-item-bottom {
+    min-height: 100px;
+    min-width: 300px;
+    margin: 5px 20px;
 }
 
 .tm-special-item-title { font-size: 1.4rem; }
@@ -428,38 +435,12 @@ h2 { margin-top: 0; }
   display: inline-block;
 }
 
-/* Dropdown Content (Hidden by Default) */
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f6f6f6;
-  min-width: 230px;
-  border: 1px solid #ddd;
-  z-index: 1;
-}
-
-/* Links inside the dropdown */
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #f1f1f1}
-
-/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-.show {display:block;}
-
-.dropdown-menu {
-    width: 300px !important;
-    height: 150px !important;
-}
-
-
 .footer-custom{
   position: fixed;
   left: 0;
   bottom: 0;
+}
+
+.site-name {
+    color: #099 !important;
 }
