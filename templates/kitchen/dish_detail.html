@@ -47,26 +47,3 @@
       </div>
     </div>
 {% endblock %}
-{% block content %}
-  <h1>Dish {{ dish.name }}
-  </h1>
-  <p>Ingredients:</p>
-  <ul>
-      {% for ingredient in dish.ingredients.all %}
-    <li>
-      {{ ingredient.name }}
-    </li>
-      {% endfor %}
-  </ul>
-  <p>Cooks</p>
-  <ul>
-    {% for cook in dish.cooks.all %}
-      <li>{{ cook.username }}</li>
-    {% endfor %}
-  </ul>
-  <p>Progres: {{ dish.progres_percent }}%</p>
-  <h2>Description:</h2>
-  <p>{{ dish.description }}</p>
-  <a href="{% url 'kitchen:dish-update' pk=dish.id %}"><button>Update</button></a>
-  <a href="{% url 'kitchen:dish-delete' pk=dish.id %}"><button>Delete</button></a>
-{% endblock %}

@@ -28,7 +28,11 @@ class Position(models.Model):
 
 
 class Cook(AbstractUser):
-    position = models.ForeignKey(Position, on_delete=models.CASCADE, related_name="cooks")
+    position = models.ForeignKey(
+        Position,
+        on_delete=models.CASCADE,
+        related_name="cooks"
+    )
     years_of_experience = models.IntegerField()
 
     def get_absolute_url(self):
@@ -42,14 +46,19 @@ class Dish(models.Model):
     dish_type = models.ForeignKey(DishType, on_delete=models.CASCADE)
     ingredients = models.ManyToManyField(Ingredient, related_name="dishes")
     cooks = models.ManyToManyField(Cook, related_name="dishes")
-    finished_cooks = models.ManyToManyField(Cook, related_name="dishes_finished", blank=True)
+    finished_cooks = models.ManyToManyField(
+        Cook,
+        related_name="dishes_finished",
+        blank=True
+    )
 
     def progres_percent(self):
-        return round(len(self.finished_cooks.all()) / len(self.cooks.all()), 2) * 100
+        return round(
+            len(self.finished_cooks.all()) / len(self.cooks.all()), 2
+        ) * 100
 
     def get_absolute_url(self):
         return reverse("kitchen:dish-list")
 
     def __str__(self):
         return self.name
-

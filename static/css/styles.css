@@ -1,4 +1,0 @@
-.btn-confirm-minor:not(:disabled):not(.disabled):active:focus, .btn-confirm-minor:not(:disabled):not(.disabled).active:focus,
-.show > .btn-confirm-minor.dropdown-toggle:focus {
-  box-shadow: 0 0 0 0.2rem rgba(23, 141, 92, 0.5);
-}

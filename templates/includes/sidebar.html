@@ -1,55 +1,55 @@
-      <div class="tm-left">
-        <div class="tm-left-inner">
-          <div class="tm-site-header">
-            <i class="fas fa-coffee fa-3x tm-site-logo"></i>
-            <h1 class="tm-site-name">Restaurant kitchen service</h1>
-          </div>
-          <nav class="tm-site-nav">
-            <ul class="tm-site-nav-ul">
-                 {% if user.is_authenticated %}
-                        <!-- User is authenticated, show user-related links -->
-                        <li class="tm-page-nav-item">
-                            <a href="#" class="tm-page-link-user">
-                             <i class='fa-solid fa-user-large tm-page-link-icon'></i>
-                                <span>{{ user.username }}</span>
-                            </a>
-                        </li>
-                        <li class="tm-page-nav-item">
-                            <a href="{% url 'logout' %}" class="tm-page-link-logout"><i class='fas fa-door-open tm-page-link-icon'></i>Logout</a>
-                        </li>
-                    {% else %}
-                        <li class="tm-page-nav-item">
-                            <a href="{% url 'login' %}" class="tm-page-link-user">
-                                <i class="fas fa-door-open tm-page-link-icon"></i>
-                                <span>Login</span>
-                            </a>
-                        </li>
-                    {% endif %}
-              <li class="tm-page-nav-item">
-                <a href="{% url 'kitchen:cook-list' %}" class="tm-page-link">
-                  <i class="fas fa-users tm-page-link-icon"></i>
-                  <span>Cooks</span>
-                </a>
-              </li>
-              <li class="tm-page-nav-item">
-                <a href="{% url 'kitchen:dish-list' %}" class="tm-page-link">
-                  <i class="fa-solid fa-bowl-food tm-page-link-icon"></i>
-                  <span>Dishes</span>
-                </a>
-              </li>
-              <li class="tm-page-nav-item">
-                <a href="{% url 'kitchen:ingredient-list' %}" class="tm-page-link">
-                  <i class="fa-solid fa-drumstick-bite tm-page-link-icon"></i>
-                  <span>Ingredients</span>
-                </a>
-              </li>
-              <li class="tm-page-nav-item">
-                <a href="{% url 'kitchen:dish-type-list' %}" class="tm-page-link">
-                  <i class="fas fa-comments tm-page-link-icon"></i>
-                  <span>Dish types</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </div>
+<div class="tm-left">
+  <div class="tm-left-inner">
+    <div class="tm-site-header">
+      <i class="fas fa-coffee fa-3x tm-site-logo"></i>
+      <h1 class="tm-site-name">Restaurant kitchen service</h1>
+    </div>
+    <nav class="tm-site-nav">
+      <ul class="tm-site-nav-ul">
+           {% if user.is_authenticated %}
+                  <!-- User is authenticated, show user-related links -->
+                  <li class="tm-page-nav-item">
+                      <a href="#" class="tm-page-link-user">
+                       <i class='fa-solid fa-user-large tm-page-link-icon'></i>
+                          <span>{{ user.username }}</span>
+                      </a>
+                  </li>
+                  <li class="tm-page-nav-item">
+                      <a href="{% url 'logout' %}" class="tm-page-link-logout"><i class='fas fa-door-open tm-page-link-icon'></i>Logout</a>
+                  </li>
+              {% else %}
+                  <li class="tm-page-nav-item">
+                      <a href="{% url 'login' %}" class="tm-page-link-user">
+                          <i class="fas fa-door-open tm-page-link-icon"></i>
+                          <span>Login</span>
+                      </a>
+                  </li>
+              {% endif %}
+        <li class="tm-page-nav-item">
+          <a href="{% url 'kitchen:cook-list' %}" class="tm-page-link">
+            <i class="fas fa-users tm-page-link-icon"></i>
+            <span>Cooks</span>
+          </a>
+        </li>
+        <li class="tm-page-nav-item">
+          <a href="{% url 'kitchen:dish-list' %}" class="tm-page-link">
+            <i class="fa-solid fa-bowl-food tm-page-link-icon"></i>
+            <span>Dishes</span>
+          </a>
+        </li>
+        <li class="tm-page-nav-item">
+          <a href="{% url 'kitchen:ingredient-list' %}" class="tm-page-link">
+            <i class="fa-solid fa-drumstick-bite tm-page-link-icon"></i>
+            <span>Ingredients</span>
+          </a>
+        </li>
+        <li class="tm-page-nav-item">
+          <a href="{% url 'kitchen:dish-type-list' %}" class="tm-page-link">
+            <i class="fas fa-comments tm-page-link-icon"></i>
+            <span>Dish types</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
