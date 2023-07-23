@@ -4,7 +4,8 @@
 1. [Introduction](#introduction)
 2. [Requirements](#requirements)
 3. [Installation](#installation)
-4. [Usage](#usage)
+4. [Used technogies](#used-technologies)
+5. [Usage](#usage)
 
 ## Introduction
 Restaurant kitchen service is web application created for tracking and managing kitchen process.
