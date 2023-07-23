@@ -1,6 +1,7 @@
 from django.urls import reverse
 
 from kitchen.models import Dish
+from kitchen.views import cook_done_work
 from tests.setup import SetUpKitchenDB
 
 DISH_LIST_URL = reverse("kitchen:dish-list")
@@ -130,7 +131,19 @@ class DishViewsTest(SetUpKitchenDB):
         self.assertNotIn(self.borch, dishes)
 
     def test_dish_delete_view_non_exist_dish(self):
-        url = reverse("kitchen:dish-delete", kwargs={"pk": 999})
+        url = reverse(
+            "kitchen:dish-delete", kwargs={"pk": 999}
+        )
         response = self.client.post(url)
 
         self.assertEqual(response.status_code, 404)
+
+    def test_cook_done_work(self):
+        response = self.client.get(reverse(
+            "kitchen:add-progres",
+            kwargs={"dish_id": self.borch.id}
+            )
+        )
+        self.assertEqual(response.status_code, 302)
+
+        self.assertIn(self.main_cook, self.borch.finished_cooks.all())

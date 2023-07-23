@@ -98,8 +98,6 @@ class IngredientListView(LoginRequiredMixin, generic.ListView):
                 name__icontains=form.cleaned_data["name"]
             )
 
-        return self.queryset
-
 
 class IngredientCreateView(LoginRequiredMixin, generic.CreateView):
     model = Ingredient
