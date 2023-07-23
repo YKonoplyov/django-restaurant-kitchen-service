@@ -1,37 +1,13 @@
 from django.contrib.auth import get_user_model
-from django.test import TestCase
 from django.urls import reverse
 
-from kitchen.models import (
-    Dish, DishType,
-    Ingredient, Position, Cook
-)
+from kitchen.models import Cook
 from tests.setup import SetUpKitchenDB
 
 COOK_LIST_URL = reverse("kitchen:cook-list")
 
 
 class PublicCookViewsTest(SetUpKitchenDB):
-    def setUp(self) -> None:
-        self.main_cook_position = Position.objects.create(
-            name="main cook"
-        )
-        self.cook_position = Position.objects.create(
-            name="cook"
-        )
-
-        self.main_cook = get_user_model().objects.create_user(
-            username="main.cook",
-            password="Admin654",
-            position=self.main_cook_position,
-            years_of_experience=5
-        )
-        self.cook = get_user_model().objects.create_user(
-            username="helper.cook",
-            password="Admin654",
-            position=self.cook_position,
-            years_of_experience=2
-        )
 
     def test_login_required_cook_list(self) -> None:
         response = self.client.get(COOK_LIST_URL)
@@ -60,7 +36,10 @@ class PublicCookViewsTest(SetUpKitchenDB):
         self.assertNotEquals(response.status_code, 200)
 
     def test_login_required_cook_delete(self) -> None:
-        cook_delete_url = reverse("kitchen:cook-delete", kwargs={"pk": self.main_cook.pk})
+        cook_delete_url = reverse(
+            "kitchen:cook-delete",
+            kwargs={"pk": self.main_cook.pk}
+        )
         response = self.client.get(cook_delete_url)
         self.assertNotEquals(response.status_code, 200)
 
@@ -72,13 +51,13 @@ class CookListViewTest(SetUpKitchenDB):
 
     def test_retrieve_cook_list(self) -> None:
         response = self.client.get(COOK_LIST_URL)
-        cooks = Cook.objects.all()
+        cooks = get_user_model().objects.all()
         self.assertEqual(response.status_code, 200)
         self.assertEqual(list(response.context["cook_list"]), list(cooks))
 
     def test_search_cok_by_username(self) -> None:
         url = reverse("kitchen:cook-list")
-        cooks = Cook.objects.all()
+        cooks = get_user_model().objects.all()
         response = self.client.get(f"{url}?username=main.cook")
         self.assertIn(self.main_cook, list(response.context["cook_list"]))
         self.assertNotIn(self.cook, list(response.context["cook_list"]))
@@ -150,5 +129,3 @@ class CookViewsTest(SetUpKitchenDB):
         response = self.client.post(url)
 
         self.assertEqual(response.status_code, 404)
-
-

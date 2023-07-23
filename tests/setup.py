@@ -1,11 +1,11 @@
 from django.contrib.auth import get_user_model
 from django.test import TestCase
-from django.urls import reverse
 
 from kitchen.models import (
     Dish, DishType,
     Ingredient, Position
 )
+
 
 class SetUpKitchenDB(TestCase):
     def setUp(self):
@@ -52,7 +52,10 @@ class SetUpKitchenDB(TestCase):
             price=5,
         )
         self.borch.cooks.add(self.main_cook, self.cook)
-        self.borch.ingredients.add(self.ingredient_beetroot, self.ingredient_water)
+        self.borch.ingredients.add(
+            self.ingredient_beetroot,
+            self.ingredient_water
+        )
 
         self.apple_pie = Dish.objects.create(
             name="Apple pie",

@@ -1,4 +1,3 @@
-from django.contrib.auth import get_user_model
 from django.urls import reverse
 
 from tests.setup import SetUpKitchenDB
@@ -17,6 +16,7 @@ class ModelsTest(SetUpKitchenDB):
             self.dish_type_soup.get_absolute_url(),
             reverse("kitchen:dish-type-list")
         )
+
     def test_str_position(self):
         self.assertEqual(str(self.main_cook_position), "main cook")
 
@@ -46,5 +46,3 @@ class ModelsTest(SetUpKitchenDB):
             str(self.borch),
             "Borch"
         )
-
-
