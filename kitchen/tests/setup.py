@@ -67,3 +67,29 @@ class SetUpKitchenDB(TestCase):
         self.apple_pie.ingredients.add(
             self.ingredient_apple, self.ingredient_flour
         )
+
+
+class AdminSiteSetUpMixin(TestCase):
+    def setUp(self) -> None:
+        self.main_cook_position = Position.objects.create(
+            name="main cook"
+        )
+        self.cook_position = Position.objects.create(
+            name="cook"
+        )
+
+        self.admin_user = get_user_model().objects.create_superuser(
+            username="admin",
+            password="test12345",
+            years_of_experience=15,
+            position=self.main_cook_position,
+
+
+        )
+        self.cook = get_user_model().objects.create_user(
+            username="cook",
+            password="driver12345",
+            years_of_experience=3,
+            position=self.cook_position
+        )
+        self.client.force_login(self.admin_user)
