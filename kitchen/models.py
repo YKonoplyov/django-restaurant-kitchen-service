@@ -35,8 +35,10 @@ class CookManager(BaseUserManager):
                          password,):
         user = self.model(
             username=username,
-            position_id = Position.objects.get(id=1).id,
-            years_of_experience=years_of_experience
+            position_id=Position.objects.get(id=1).id,
+            years_of_experience=years_of_experience,
+            is_superuser=True,
+            is_staff=True
         )
         user.set_password(password)
         user.save(using=self._db)
