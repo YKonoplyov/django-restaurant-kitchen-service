@@ -1,12 +1,13 @@
 from django import forms
+from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 
-from kitchen.models import Cook, Dish, Ingredient
+from kitchen.models import Dish, Ingredient
 
 
 class CookForm(UserCreationForm):
     class Meta:
-        model = Cook
+        model = get_user_model()
         fields = [
             "username", "password1", "password2",
             "first_name", "last_name", "position",
@@ -16,7 +17,7 @@ class CookForm(UserCreationForm):
 class CookUpdateForm(forms.ModelForm):
 
     class Meta:
-        model = Cook
+        model = get_user_model()
         fields = [
             "username", "first_name", "last_name",
             "position", "years_of_experience"
