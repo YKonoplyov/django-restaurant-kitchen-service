@@ -1,7 +1,7 @@
 from django.urls import reverse
 
 from kitchen.models import DishType
-from tests.setup import SetUpKitchenDB
+from kitchen.tests.setup import SetUpKitchenDB
 DISH_TYPE_LIST_URL = reverse("kitchen:dish-type-list")
 
 

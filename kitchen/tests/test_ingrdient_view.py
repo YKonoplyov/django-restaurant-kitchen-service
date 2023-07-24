@@ -1,7 +1,7 @@
 from django.urls import reverse
 
 from kitchen.models import Ingredient
-from tests.setup import SetUpKitchenDB
+from kitchen.tests.setup import SetUpKitchenDB
 
 INGREDIENT_LIST_URL = reverse("kitchen:ingredient-list")
 

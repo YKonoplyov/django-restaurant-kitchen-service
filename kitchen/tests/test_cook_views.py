@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from django.urls import reverse
 
 from kitchen.models import Cook
-from tests.setup import SetUpKitchenDB
+from kitchen.tests.setup import SetUpKitchenDB
 
 COOK_LIST_URL = reverse("kitchen:cook-list")
 

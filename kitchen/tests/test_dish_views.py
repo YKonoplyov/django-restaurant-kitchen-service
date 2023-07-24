@@ -2,7 +2,7 @@ from django.urls import reverse
 
 from kitchen.models import Dish
 from kitchen.views import cook_done_work
-from tests.setup import SetUpKitchenDB
+from kitchen.tests.setup import SetUpKitchenDB
 
 DISH_LIST_URL = reverse("kitchen:dish-list")
 

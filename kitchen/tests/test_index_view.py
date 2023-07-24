@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from django.urls import reverse
 
 from kitchen.views import Index
-from tests.setup import SetUpKitchenDB
+from kitchen.tests.setup import SetUpKitchenDB
 
 
 class IndexViewTest(SetUpKitchenDB):

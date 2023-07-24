@@ -1,6 +1,6 @@
 from django.urls import reverse
 
-from tests.setup import SetUpKitchenDB
+from kitchen.tests.setup import SetUpKitchenDB
 
 
 class ModelsTest(SetUpKitchenDB):
