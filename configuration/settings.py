@@ -38,7 +38,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "kitchen_service.urls"
+ROOT_URLCONF = "configuration.urls"
 
 TEMPLATES = [
     {
@@ -58,7 +58,7 @@ TEMPLATES = [
 
 AUTH_USER_MODEL = "kitchen.Cook"
 
-WSGI_APPLICATION = "kitchen_service.wsgi.application"
+WSGI_APPLICATION = "configuration.wsgi.application"
 
 DATABASES = {
     "default": {

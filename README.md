@@ -18,15 +18,16 @@ Restaurant kitchen service is web application created for tracking and managing 
 1. Clone the repository:
 
 
-2. Create virtual environment:
+2. Create virtual environment and activate it:
     - on windows:
     ```angular2html
+    python -m venv venv
     venv\Scripts\activate
     ```   
     - on Mac:
     ```angular2html
     source venv/bin/activate
-```
+   ```
 3. Install dependencies:
 ```angular2html
 pip install -r requirements.txt
