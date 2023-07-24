@@ -1,5 +1,17 @@
 # Restaurant kitchen service
  ## You can find deployed project [here](https://kitchen-service-fvfz.onrender.com/)
+   To use functional you need to login:
+<br>
+<br>
+   login: 
+```   
+visitor.cook
+```   
+password:
+```
+SimplePassword4895
+```
+
 ## Table of Contents
 1. [Introduction](#introduction)
 2. [Requirements](#requirements)

@@ -75,9 +75,11 @@ class Dish(models.Model):
     )
 
     def progres_percent(self):
-        return round(
-            len(self.finished_cooks.all()) / len(self.cooks.all()), 2
-        ) * 100
+        if self.cooks.count() > 0:
+            return round(
+                len(self.finished_cooks.all()) / len(self.cooks.all()), 2
+            ) * 100
+        return 0
 
     def get_absolute_url(self):
         return reverse("kitchen:dish-list")
