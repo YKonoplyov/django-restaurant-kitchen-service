@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}
+  <title>Home page</title>
+{% endblock %}
+
+{% block navigation_pages %}
+  <li>
+    <h1>We have:</h1>
+  </li>
+{% endblock %}
+
+{% block list_content %}
+ <div id="special" class="tm-page-content">
+            <div class="tm-special-items">
+              <div class="tm-black-bg tm-special-item">
+                <div class="tm-special-item-description">
+                  <h2 class="tm-text-primary tm-special-item-title">{{ cooks }}</h2>
+                  <p class="tm-special-item-text">High specialized cooks</p>
+                </div>
+              </div>
+              <div class="tm-black-bg tm-special-item">
+                <div class="tm-special-item-description">
+                  <h2 class="tm-text-primary tm-special-item-title">{{ dishes }}</h2>
+                  <p class="tm-special-item-text">Delicious dishes</p>
+                </div>
+              </div>
+              <div class="tm-black-bg tm-special-item-bottom">
+                <div class="tm-special-item-description">
+                  <h2 class="tm-text-primary tm-special-item-title">{{ ingredients }}</h2>
+                  <p class="tm-special-item-text">Extra level ingredients</p>
+                </div>
+              </div>
+              <div class="tm-black-bg tm-special-item-bottom">
+                <div class="tm-special-item-description">
+                  <h2 class="tm-text-primary tm-special-item-title">{{ dish_types }}</h2>
+                  <p class="tm-special-item-text">Especial dish types</p>
+                </div>
+              </div>
+{% endblock %}
+

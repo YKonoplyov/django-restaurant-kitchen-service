@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block list_content %}
+  <div class="tm-list">
+    <div class="tm-list-item">
+      <div class="tm-black-bg tm-list-item-text">
+        <h3 class="tm-list-item-name">Logged out!<span class="tm-list-item-price">
+          <a href="{% url 'login' %}">Click here to login again.</a></span></h3>
+      </div>
+    </div>
+  </div>
+{% endblock %}

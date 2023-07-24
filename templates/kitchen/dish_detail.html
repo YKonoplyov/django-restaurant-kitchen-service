@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block navigation_pages %}
+  <li class="tm-tab-link active">
+    <h1 class="tm-tab-link active" >{{ dish.name }} details</h1>
+  </li>
+{% endblock %}
+
+{% block list_content %}
+    <div class="tm-list">
+      <div class="tm-list-item">
+        <div class="tm-black-bg tm-list-item-text">
+          <h2 class="tm-list-item-name">{{ dish.name }}
+            <br>
+            {{ cook.username }}
+            <span class="">
+              <a class="tm-list-item-price" href="{% url 'kitchen:dish-update' pk=dish.id %}">Update</a>
+              <span>
+                <a class="tm-list-item-price" href="{% url 'kitchen:dish-delete' pk=dish.id %}">Delete</a>
+              </span>
+            </span>
+          </h2>
+          <p class="tm-list-item-description">
+          <h3>Cooks:</h3>
+          {% for cook in dish.cooks.all %}
+          <p>{{ cook.first_name }} {{ cook.last_name }}</p>
+          {% endfor %}
+          <br>
+          <h4>Ingredients:</h4>
+            {% for ingrdedient in dish.ingredients.all %}
+            <p>{{ ingrdedient.name }}</p>
+            {% endfor %}
+          <br>
+            <div class="inline-block">
+              <h5>Progres: {{ dish.progres_percent }}%</h5>
+              <div class="float-right">
+                {% if user in dish.cooks.all  and not user in dish.finished_cooks.all %}
+                  <a href="{% url 'kitchen:add-progres' dish_id=dish.id%}" ><button class="btn-success">I`m done</button></a>
+                {% else %}
+                  <button class="btn-dark">Done</button>
+                {% endif %}
+              </div>
+            </div>
+          </p>
+        </div>
+      </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+{% block title %}
+  <title>Dishes</title>
+{% endblock %}
+{% block navigation_pages %}
+  <li class="">
+    <a class="tm-tab-link" href="">Dishes</a>
+  </li>
+  <li class="tm-tab-link">
+      <a href="{% url 'kitchen:dish-create' %}" class="tm-tab-link">Add dish</a>
+  </li>
+  <li>
+    <div class="dropdown">
+      <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Search
+      </a>
+      <div class="dropdown-menu">
+      <form class="px-4 py-3" method="get">
+        <div class="form-group">
+          <label for="exampleDropdownFormEmail1"></label>
+          <input type="text" class="form-control" name="name" id="exampleDropdownFormEmail1" placeholder="example: borch">
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+      </form>
+      </div>
+    </div>
+  </li>
+{% endblock %}
+{% block list_content %}
+
+  {% for dish in dish_list %}
+    <div class="tm-list">
+      <div class="tm-list-item">
+        <div class="tm-black-bg tm-list-item-text">
+          <h3 class="tm-list-item-name">{{ dish.name }}<span class="tm-list-item-price"><a
+              href="{% url 'kitchen:dish-details' pk=dish.id %}">Details</a></span></h3>
+          <p class="tm-list-item-description">{{ dish.type }}</p>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+{% endblock %}

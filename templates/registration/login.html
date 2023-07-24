@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}
+  <title>Login</title>
+{% endblock %}
+{% block navigation_pages %}
+  <li>
+    <h1>Login</h1>
+  </li>
+{% endblock %}
+{% block list_content %}
+      <div class="tm-list">
+      <div class="tm-list-item">
+        <div class="tm-black-bg tm-list-item-text">
+          <form action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+          <h2 class="tm-list-item-name">
+            <input type="text" name="username" class="form-control login-field">
+          </h2>
+          <h3 class="tm-list-item-description">
+            <input type="password" name="password" class="form-control login-field">
+          </h3>
+            <input class="float-right" type="submit" value="login">
+            </form>
+        </div>
+      </div>
+    </div>
+
+{% endblock %}

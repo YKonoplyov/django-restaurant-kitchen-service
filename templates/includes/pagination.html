@@ -1,0 +1,22 @@
+{% load query_transform %}
+{% if is_paginated %}
+      <div class="tm-list">
+      <div class="tm-list-item">
+        <div class="tm-black-bg tm-list-item-text">
+              <span>
+            {% if page_obj.has_previous %}
+                <h1 class="btn-lg tm-list-item-price pagination-btn">
+                  <a href="?{% query_transform request page=page_obj.previous_page_number %}" class="">prev</a>
+                </h1>
+            {% endif %}
+            {% if page_obj.has_next %}
+                <h2 class="btn-lg tm-list-item-name float-right pagination-btn">
+                  <a href="?{% query_transform request page=page_obj.next_page_number %}" class="">next</a>
+                </h2>
+            {% endif %}
+              </span>
+        </div>
+      </div>
+    </div>
+
+{% endif %}

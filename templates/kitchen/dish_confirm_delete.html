@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+
+{% block list_content %}
+    <div class="tm-list">
+      <div class="tm-list-item">
+        <div class="tm-black-bg tm-list-item-text">
+          <h3 class="tm-list-item-name">
+            Are you sure, you want to delete the {{ dish.name }}
+          </h3>
+            <span class="">
+              <span>
+                <form action="" method="post">
+                {% csrf_token %}
+                  <input type="submit" value="Yes" class="btn-danger">
+                  <input type="button" value="No" onclick="history.back()" class="btn-success">
+                </form>
+              </span>
+            </span>
+
+        </div>
+      </div>
+    </div>
+{% endblock %}
