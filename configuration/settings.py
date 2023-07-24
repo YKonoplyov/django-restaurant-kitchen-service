@@ -1,15 +1,28 @@
-from audioop import reverse
+import os
+import dj_database_url
+
+import decouple
+
 from pathlib import Path
+from dotenv import load_dotenv
 
 from django.urls import reverse_lazy
 
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = "django-insecure-y5or6ryqij(jqfy^^-h!ay3+l&&@#xnd*byuf-xyy*8%dtl1mj"
+load_dotenv(os.path.join(BASE_DIR, '.env'))
 
-DEBUG = True
+SECRET_KEY = decouple.config("SECRET_KEY", default="VerySecretKey", cast=str)
 
-ALLOWED_HOSTS = []
+DEBUG = decouple.config("DEBUG", default=False, cast=str)
+
+ALLOWED_HOSTS = ["127.0.0.1"]
+
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -66,6 +79,11 @@ DATABASES = {
         "NAME": BASE_DIR / "db.sqlite3",
     }
 }
+db_from_env = dj_database_url.config(
+    default=os.getenv("DATABASE_URL"),
+    conn_max_age=500
+)
+DATABASES["default"].update(db_from_env)
 
 AUTH_PASSWORD_VALIDATORS = [
     {
