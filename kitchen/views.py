@@ -30,7 +30,7 @@ class Index(generic.View):
 
 
 class CookListView(LoginRequiredMixin, generic.ListView):
-    model = Cook
+    model = get_user_model()
     paginate_by = 3
 
     def get_context_data(self, *, object_list=None, **kwargs):
