@@ -17,11 +17,10 @@ SECRET_KEY = decouple.config("SECRET_KEY", default="VerySecretKey", cast=str)
 
 DEBUG = decouple.config("DEBUG", default=False, cast=str)
 
-ALLOWED_HOSTS = ["127.0.0.1"]
-
-RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
-if RENDER_EXTERNAL_HOSTNAME:
-    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+    "kitchen-service-fvfz.onrender.com"
+]
 
 
 INSTALLED_APPS = [
