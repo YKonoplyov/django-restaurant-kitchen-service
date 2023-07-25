@@ -35,7 +35,6 @@ class CookManager(BaseUserManager):
                          password,):
         user = self.model(
             username=username,
-            position_id=Position.objects.get(id=1).id,
             years_of_experience=years_of_experience,
             is_superuser=True,
             is_staff=True
@@ -49,7 +48,9 @@ class Cook(AbstractUser):
     position = models.ForeignKey(
         Position,
         on_delete=models.CASCADE,
-        related_name="cooks"
+        related_name="cooks",
+        blank=True,
+        null=True
     )
     years_of_experience = models.IntegerField()
 
