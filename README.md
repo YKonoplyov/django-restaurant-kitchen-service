@@ -28,40 +28,40 @@ Restaurant kitchen service is web application created for tracking and managing 
 
 ## Installation
 1. Clone the repository:
-   ```angular2html
+   ```
    git clone https://github.com/YKonoplyov/django-restaurant-kitchen-service.git
    ```
 
 2. Create virtual environment:
-   ```angular2html
+   ```
     python -m venv venv
    ```
    and activate it 
    <br>
    <br>
     - on windows:
-    ```angular2html
+    ```
     venv\Scripts\activate
     ```   
     - on Mac:
-    ```angular2html
+    ```
     source venv/bin/activate
    ```
 3. Install dependencies:
-```angular2html
+```
 pip install -r requirements.txt
 ```
 
 4. Apply database migrations:
-```angular2html
+```
 python manage.py migrate
 ```
 5. Create superuser:
-```angular2html
+```
 python manage.py createsuperuser
 ```
 6. Run django server using run button or type next command to the console:
-```angular2html
+```
 python manage.py runserver
 ```
 It will run at http://127.0.0.1:8000/.
