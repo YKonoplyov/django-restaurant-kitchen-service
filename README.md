@@ -1,5 +1,17 @@
 # Restaurant kitchen service
  ## You can find deployed project [here](https://kitchen-service-fvfz.onrender.com/)
+   To use functional you need to login:
+<br>
+<br>
+   login: 
+```   
+visitor.cook
+```   
+password:
+```
+SimplePassword4895
+```
+
 ## Table of Contents
 1. [Introduction](#introduction)
 2. [Requirements](#requirements)
@@ -16,33 +28,40 @@ Restaurant kitchen service is web application created for tracking and managing 
 
 ## Installation
 1. Clone the repository:
+   ```
+   git clone https://github.com/YKonoplyov/django-restaurant-kitchen-service.git
+   ```
 
-
-2. Create virtual environment and activate it:
-    - on windows:
-    ```angular2html
+2. Create virtual environment:
+   ```
     python -m venv venv
+   ```
+   and activate it 
+   <br>
+   <br>
+    - on windows:
+    ```
     venv\Scripts\activate
     ```   
     - on Mac:
-    ```angular2html
+    ```
     source venv/bin/activate
    ```
 3. Install dependencies:
-```angular2html
+```
 pip install -r requirements.txt
 ```
 
 4. Apply database migrations:
-```angular2html
+```
 python manage.py migrate
 ```
 5. Create superuser:
-```angular2html
+```
 python manage.py createsuperuser
 ```
 6. Run django server using run button or type next command to the console:
-```angular2html
+```
 python manage.py runserver
 ```
 It will run at http://127.0.0.1:8000/.

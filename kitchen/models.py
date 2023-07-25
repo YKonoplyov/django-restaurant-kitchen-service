@@ -35,7 +35,6 @@ class CookManager(BaseUserManager):
                          password,):
         user = self.model(
             username=username,
-            position_id=Position.objects.get(id=1).id,
             years_of_experience=years_of_experience,
             is_superuser=True,
             is_staff=True
@@ -49,7 +48,9 @@ class Cook(AbstractUser):
     position = models.ForeignKey(
         Position,
         on_delete=models.CASCADE,
-        related_name="cooks"
+        related_name="cooks",
+        blank=True,
+        null=True
     )
     years_of_experience = models.IntegerField()
 
@@ -75,9 +76,11 @@ class Dish(models.Model):
     )
 
     def progres_percent(self):
-        return round(
-            len(self.finished_cooks.all()) / len(self.cooks.all()), 2
-        ) * 100
+        if self.cooks.count() > 0:
+            return round(
+                len(self.finished_cooks.all()) / len(self.cooks.all()), 2
+            ) * 100
+        return 0
 
     def get_absolute_url(self):
         return reverse("kitchen:dish-list")

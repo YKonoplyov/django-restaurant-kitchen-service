@@ -31,6 +31,10 @@
             {% for ingrdedient in dish.ingredients.all %}
             <p>{{ ingrdedient.name }}</p>
             {% endfor %}
+          <h5>Type:</h5>
+          <p>{{ dish.dish_type }}</p>
+          <h6>Description:</h6>
+          <p>{{ dish.description }}</p>
           <br>
             <div class="inline-block">
               <h5>Progres: {{ dish.progres_percent }}%</h5>
