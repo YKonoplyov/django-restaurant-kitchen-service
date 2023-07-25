@@ -23,7 +23,7 @@ SimplePassword4895
 Restaurant kitchen service is web application created for tracking and managing kitchen process.
 
 ### Requirements
-* python 3.6
+* python 3.8
 * pip
 
 ## Installation
@@ -69,7 +69,7 @@ It will run at http://127.0.0.1:8000/.
 ## Used technologies
 - Django framework
 - HTML, CSS
-- SQLite
+- SQLite, PostgreSQL
 
 ## Usage
 - Track and control of cooks that cooking  dish
