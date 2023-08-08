@@ -82,3 +82,8 @@ It will run at http://127.0.0.1:8000/.
 - Track and control dish types
 - Track of ingredients
 - Track of dish progress
+
+### Screenshots
+![login_page_kitchen.png](screenshots%2Flogin_page_kitchen.png)
+![home_page_kitchen.png](screenshots%2Fhome_page_kitchen.png)
+![cooks_page_kitchen.png](screenshots%2Fcooks_page_kitchen.png)
