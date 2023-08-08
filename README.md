@@ -51,16 +51,22 @@ Restaurant kitchen service is web application created for tracking and managing 
 ```
 pip install -r requirements.txt
 ```
+4. Create .env file and define environmental variables in it:
+```
+DATABASE_URL= url to your database
+SECRET_KEY= create or generate your own secret key for django
+DEBUG= could be 'True' or 'False' and defines if debug mod is enabled or disabled
+```
 
-4. Apply database migrations:
+5. Apply database migrations:
 ```
 python manage.py migrate
 ```
-5. Create superuser:
+6. Create superuser:
 ```
 python manage.py createsuperuser
 ```
-6. Run django server using run button or type next command to the console:
+7. Run django server using run button or type next command to the console:
 ```
 python manage.py runserver
 ```
