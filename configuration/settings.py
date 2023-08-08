@@ -15,7 +15,7 @@ load_dotenv(os.path.join(BASE_DIR, '.env'))
 
 SECRET_KEY = decouple.config("SECRET_KEY", default="VerySecretKey", cast=str)
 
-DEBUG = decouple.config("DEBUG", default=False, cast=str)
+DEBUG = os.getenv("DJANGO_DEBUG") != "False"
 
 ALLOWED_HOSTS = [
     "127.0.0.1",
